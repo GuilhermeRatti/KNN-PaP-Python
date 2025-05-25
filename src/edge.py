@@ -61,5 +61,4 @@ class Edge():
         Return a string representation of the edge.
 
         """
-        return f"Edge({self.id1}, {self.id2}, weight={self.weight})"
-
+        return f"{self.id1+1} {self.id2+1} {self.weight}"

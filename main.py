@@ -24,12 +24,13 @@ if __name__ == "__main__":
 
     # Creating Vertex objects from the data read from the file.
     vertexes = [Vertex(**point) for point in data]
-    groups = UnionFind(len(data))
 
-    # Creating edges between the vertices based on their distances.
-    edges = [Edge(vertexes[i], vertexes[j]) for i in range(len(vertexes)) for j in range(i + 1, len(vertexes))]
+    kruskal_algorithm = Kruskal(vertexes,k=3)
+    kruskal_algorithm.define_groups()
+    output_groups = kruskal_algorithm.get_groups()
 
-    # edges_min_heap = Heap(edges, heapify=True, heap_type='min')
+    for group in output_groups:
+        print(group)
     
     logging.info(f"Data read successfully. Number of vertexes: {len(data)}, Dimensions: {dims}")
 

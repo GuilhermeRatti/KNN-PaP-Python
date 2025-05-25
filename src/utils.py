@@ -19,7 +19,7 @@ def read_file(directory:str) -> tuple:
     id = 1
     with open(directory, 'r') as file:
         for line in file:
-            print(line.strip())
+            # print(line.strip())
             coordinates = [float(num) for num in line.strip().split(',')]
             points.append({"id": id, "coordinates": coordinates})
             id+=1
@@ -58,7 +58,7 @@ def get_masked_indices(input_list:list, mask:list) -> list:
     output_list = []
     assert len(input_list) == len(mask), f"input list and mask must have the same amount of elements! (input) {len(input_list)} != (mask) {len(mask)}"
 
-    output_list = [inpt for inpt, msk in zip(input_list, mask) if mask]
+    output_list = [inpt for inpt, msk in zip(input_list, mask) if msk]
     
     output_list.sort()
 

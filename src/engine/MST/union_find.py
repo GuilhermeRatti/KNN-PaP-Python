@@ -38,6 +38,7 @@ class UnionFind():
         
         # we must avoid circular connections
         if grp1 == grp2:
+            # print(f"tried to connect {idx1} and {idx2} but they're already in the same group!")
             return ValueError
 
         if self.weights[grp1] < self.weights[grp2]:
@@ -54,6 +55,9 @@ class UnionFind():
         """
         for idx in range(self.length):
             self.list[idx] = self.find(idx)
+
+    def get_uniques(self):
+        return set(self.list)
 
     def __repr__(self):
         """

@@ -5,14 +5,16 @@ class Heap():
 
         Args:
             elements_list (list): A list of elements to initialize the heap with.
-            **kwargs: Additional keyword arguments for heap initialization.
+            **kwargs: Additional keyword arguments for heap initialization:
+                - heapify - True (default)
+                - heap_type - 'min' (default)
         """
         # Initialize the heap with the provided keyword arguments
 
         self.heap = elements_list
         self.size = len(self.heap)
         self.heap_type = kwargs.get('heap_type', 'min')
-        self.heapify = kwargs.get('heapify', False)
+        self.heapify = kwargs.get('heapify', True)
         if self.heapify:
             self.build_heap()
         
@@ -36,7 +38,7 @@ class Heap():
         self.size += 1
         self._heapify_up(self.size - 1)
 
-    def extract(self):
+    def extract(self) -> object:
         """
         Extract the root element from the heap.
 
@@ -47,10 +49,9 @@ class Heap():
         if self.size == 0:
             raise IndexError("Heap is empty")
 
-        root = self.heap[0]
-        self.heap[0] = self.heap[self.size - 1]
+        self.heap[0], self.heap[self.size - 1] = self.heap[self.size - 1], self.heap[0]
+        root = self.heap.pop()
         self.size -= 1
-        self.heap.pop()
         self._heapify_down(0)
 
         return root
@@ -107,9 +108,6 @@ class Heap():
     def __repr__(self):
         """
         Return a string representation of the heap.
-
-        Returns:
-            str: A string representation of the heap.
         """
         msg = f"Heap list ({self.heap_type}):\n"
         for i in range(self.size):
@@ -117,4 +115,4 @@ class Heap():
         if self.size == 0:
             msg += "\t<empty heap>"
 
-        return msg
+        return msg()

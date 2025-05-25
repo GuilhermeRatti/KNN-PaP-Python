@@ -2,7 +2,7 @@ import math
 
 class Vertex():
     def __init__(self, **kwargs):
-        self.id = int(kwargs.get('id'))
+        self.id = int(kwargs.get('id')) - 1
         self.coordinates = kwargs.get('coordinates')
 
     def distance(self, other) -> float:
@@ -19,8 +19,8 @@ class Vertex():
             return math.sqrt(sum((a - b) ** 2 for a, b in zip(self.coordinates, other.coordinates)))
         
         return NotImplementedError("Distance can only be calculated between two Vertex instances.")
-    
-     # Overload less than (<) operator
+
+    # Overload less than (<) operator
     def __lt__(self, other):
         if isinstance(other, Vertex):
             return self.id < other.id
@@ -35,8 +35,6 @@ class Vertex():
     def __repr__(self):
         """
         Return a string representation of the edge.
-        
-        Returns:
-            str: A string representation of the edge.
+
         """
-        return f"Vertex({self.id}, coordinates={self.coordinates})"
+        return f"{self.id + 1}"
