@@ -1,4 +1,6 @@
 import argparse
+from .edge import Edge
+from .vertex import Vertex
 
 def read_file(directory:str) -> tuple:
     """
@@ -41,3 +43,12 @@ def parsing_args() -> argparse.Namespace:
     
     return args
 
+def get_masked_indices(input_list:list, mask:list):
+    output_list = []
+    assert len(input_list) == len(mask), f"input list and mask must have the same amount of elements! (input) {len(input_list)} != (mask) {len(mask)}"
+
+    output_list = [inpt for inpt, msk in zip(input_list, mask) if mask]
+    
+    output_list.sort()
+
+    return output_list
