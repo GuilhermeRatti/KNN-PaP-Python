@@ -48,8 +48,18 @@ class UnionFind():
             self.weights[grp1] += self.weights[grp2]
 
         
+    def standardize_groups(self):
+        """
+        Standardize the values of every group into one single value for each group, which is not always granted before performing this operation (a single group may be indexes by multiple values).
+        """
+        for idx in range(self.length):
+            self.list[idx] = self.find(idx)
+
     def __repr__(self):
         """
         Return a string representation of the heap.
         """
         return f"UnionFind: {[(a,b) for a, b in zip(self.list,self.weights)]}"
+    
+    
+        

@@ -29,7 +29,6 @@ def read_file(directory:str) -> tuple:
     return points, dimensions
 
 def parsing_args() -> argparse.Namespace:
-    
     """
     Parses command line arguments.
     
@@ -43,7 +42,19 @@ def parsing_args() -> argparse.Namespace:
     
     return args
 
-def get_masked_indices(input_list:list, mask:list):
+def get_masked_indices(input_list:list, mask:list) -> list:
+    """
+    Selects specific elements of input_list based on provided mask. The mask must have boolean logic. True indices will be selected and False values will be discarded.
+    
+    Args:
+        input_list (list): A list of any elements.
+
+        mask (list): A matching list of boolean values. 
+        
+    Returns:
+        list: A filtered list from input_list based on the masked list.
+    """
+
     output_list = []
     assert len(input_list) == len(mask), f"input list and mask must have the same amount of elements! (input) {len(input_list)} != (mask) {len(mask)}"
 

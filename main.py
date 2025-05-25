@@ -24,8 +24,8 @@ if __name__ == "__main__":
 
     # Creating Vertex objects from the data read from the file.
     vertexes = [Vertex(**point) for point in data]
-
     groups = UnionFind(len(data))
+
     # Creating edges between the vertices based on their distances.
     edges = [Edge(vertexes[i], vertexes[j]) for i in range(len(vertexes)) for j in range(i + 1, len(vertexes))]
 
