@@ -1,7 +1,7 @@
 from .union_find import UnionFind
-from ...edge import Edge
+from ..edge import Edge
 from .heap import Heap
-from ...utils import get_masked_indices
+from ..utils import get_masked_indices
 
 class Kruskal():
     def __init__(self, intput_list:list, k:int=2):
@@ -13,16 +13,10 @@ class Kruskal():
     def define_groups(self):
         weights = [Edge(self.intput_list[i], self.intput_list[j]) for i in range(len(self.intput_list)) for j in range(i + 1, len(self.intput_list))]
         
-        print(len(self.intput_list))
-        print(len(weights))
+        # print(len(self.intput_list))
+        # print(len(weights))
 
         priority_queue = Heap(weights)
-        with open("test.txt","w") as f:
-            f.write("aa\n")
-            for weight in weights:
-                f.write(str(weight) + "\n")
-            f.write("\naa")
-
         count = len(self.intput_list) - self.k
 
         while count > 0:

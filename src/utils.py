@@ -37,6 +37,8 @@ def parsing_args() -> argparse.Namespace:
     """
     parser = argparse.ArgumentParser(description="Process some integers.")
     parser.add_argument('directory', type=str, help='Directory of the file to be read')
+
+    parser.add_argument('k', type=int, help='Number of klusters')
     
     args = parser.parse_args()
     

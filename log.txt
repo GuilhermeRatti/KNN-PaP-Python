@@ -1,5 +1,5 @@
-2025-05-25 13:26 - INFO - Starting the script.
-2025-05-25 13:26 - INFO - Arguments parsed: Namespace(directory='Validacao\\base2.csv')
-2025-05-25 13:26 - INFO - Reading the file...
-2025-05-25 13:26 - INFO - Directory: Validacao\base2.csv
-2025-05-25 13:26 - INFO - Data read successfully. Number of vertexes: 60, Dimensions: 3
+2025-05-26 01:03 - INFO - Starting the script.
+2025-05-26 01:03 - INFO - Arguments parsed: Namespace(directory='Validacao/base3.csv', k=5)
+2025-05-26 01:03 - INFO - Reading the file...
+2025-05-26 01:03 - INFO - Directory: Validacao/base3.csv
+2025-05-26 01:03 - INFO - Data read successfully. Number of vertexes: 150, Dimensions: 4

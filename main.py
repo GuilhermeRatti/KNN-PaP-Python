@@ -19,18 +19,28 @@ if __name__ == "__main__":
 
     logging.info("Reading the file...")
     directory = args.directory
+    klusters = args.k
     logging.info(f"Directory: {directory}")
     data, dims = read_file(directory)
 
     # Creating Vertex objects from the data read from the file.
     vertexes = [Vertex(**point) for point in data]
 
-    kruskal_algorithm = Kruskal(vertexes,k=3)
+    kruskal_algorithm = KNN(vertexes,k=klusters)
     kruskal_algorithm.define_groups()
     output_groups = kruskal_algorithm.get_groups()
 
     for group in output_groups:
         print(group)
     
+    with open("resultados/"+directory.split('/')[-1].replace(".csv","")+f"k{klusters}.txt","w") as f:
+        for group in output_groups:
+            for i in range(len(group)):
+                f.write(str(group[i]))
+                if i < len(group) - 1:
+                    f.write(", ")
+                else:
+                    f.write("\n")
+
     logging.info(f"Data read successfully. Number of vertexes: {len(data)}, Dimensions: {dims}")
 

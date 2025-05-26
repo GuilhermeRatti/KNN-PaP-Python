@@ -1,8 +1,9 @@
 class UnionFind():
-    def __init__(self, length:int):
+    def __init__(self, length:int, **kwargs):
         self.length = length
         self.list = [i for i in range(self.length)]
         self.weights = [1]*self.length
+        self.path_compression = kwargs.get("path_compression", True)
     
     def find(self, idx:int) -> int:
         """
@@ -17,7 +18,8 @@ class UnionFind():
         # while the root doesnt point to itself (not the root of the group)
         while idx != self.list[idx]:
             # performing halving (path compression) to increase efficiency
-            self.list[idx] = self.list[self.list[idx]]
+            if self.path_compression:
+                self.list[idx] = self.list[self.list[idx]]
             idx = self.list[idx]
 
         return idx
@@ -40,13 +42,24 @@ class UnionFind():
         if grp1 == grp2:
             # print(f"tried to connect {idx1} and {idx2} but they're already in the same group!")
             return ValueError
-
+        
         if self.weights[grp1] < self.weights[grp2]:
             self.list[grp1] = grp2
             self.weights[grp2] += self.weights[grp1]
         else:
             self.list[grp2] = grp1
             self.weights[grp1] += self.weights[grp2]
+
+    # def remove(self,idx1:int,idx2:int):
+    #     assert self.path_compression is not True, "Can't perform remove action with path compression active."
+
+    #     if self.list[idx1] == idx2:
+    #         self.list[idx1] = idx1
+    #     elif self.list[idx2] == idx1:
+    #         self.list[idx2] == idx2
+    #     else:
+    #         msg = f"indexes are not connected directly! {idx1} - {idx2}."
+    #         raise IndexError(msg)
 
         
     def standardize_groups(self):

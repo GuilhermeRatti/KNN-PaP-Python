@@ -105,6 +105,16 @@ class Heap():
             self.heap[index], self.heap[higher_priority] = self.heap[higher_priority], self.heap[index]
             self._heapify_down(higher_priority)
 
+    def __iter__(self):
+        self._iter = 0
+        return self
+    
+    def __next__(self):
+        if self._iter < len(self.heap):
+            ret = self.heap[self._iter]
+            self._iter+=1
+            return ret
+        raise StopIteration
     def __repr__(self):
         """
         Return a string representation of the heap.
