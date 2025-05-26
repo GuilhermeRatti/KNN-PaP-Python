@@ -1,12 +1,6 @@
 import os
 
 if __name__ == "__main__":
-#     parser = argparse.ArgumentParser(description="Process some integers.")
-
-#     parser.add_argument('answer_path', type=str, help='Directory of the file to be read')
-#     parser.add_argument('results_path', type=str, help='Number of klusters')
-
-#     args = parser.parse_args()
     answer_directory = "Validacao/resultados/"
     result_directory = "resultados/"
     
@@ -32,8 +26,11 @@ if __name__ == "__main__":
             for i in range(len(result)):
                 result[i] = [int(num) for num in result[i].strip().split(',') if num]
 
+        err_msg = ""
         for r in result:
             if r not in answer:
-                raise ValueError(f"Answer does not match! {answer_path} - {result_path}")
+                err_msg += f"\n\t-> {answer_path} - {result_path}"
+        if err_msg:
+            raise ValueError(f"Answer does not match, check the file(s): {err_msg}")
             
     print("Everything matched, congratulations, you've finished the assignment!!")
