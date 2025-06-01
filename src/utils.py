@@ -35,9 +35,9 @@ def parsing_args() -> argparse.Namespace:
     Returns:
         argparse.Namespace: The parsed arguments.
     """
-    parser = argparse.ArgumentParser(description="Process some integers.")
+    parser = argparse.ArgumentParser(description='KNN Algorithm for clustering points in a multi-dimensional space.')
     parser.add_argument('directory', type=str, help='Directory of the file to be read')
-
+    parser.add_argument('output', type=str, default=None, help='Output file name (optional)')
     parser.add_argument('k', type=int, help='Number of klusters')
     
     args = parser.parse_args()
